@@ -1,0 +1,11 @@
+<mapper namespace="org.hgq.mapper.UserDao">
+
+    <!-- sql 的唯一标识：namespace.id来组成，称之为statementId -->
+    <select id="findAll" resultType="org.hgq.domain.User">
+        select * from user
+    </select>
+
+    <select id="findByCondition" resultType="org.hgq.domain.User" parameterType="org.hgq.domain.User">
+        select * from user where id = #{id} and username = #{username}
+    </select>
+</mapper>

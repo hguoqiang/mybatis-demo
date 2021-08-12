@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.hgq.mapper.UserMapper">
+    <select id="findAll" resultType="user">
+        select * from User
+    </select>
+
+    <select id="findByCondition" resultType="org.hgq.pojo.User" parameterType="org.hgq.pojo.User">
+        select * from user where id = #{id} and username = #{username}
+    </select>
+
+    <insert id="saveUser" parameterType="org.hgq.pojo.User">
+        insert into user values (#{id},#{username},#{password},#{birthday})
+    </insert>
+
+
+    <update id="updateUser" parameterType="org.hgq.pojo.User">
+        update User set username= #{username} , password = #{password} where id= #{id}
+    </update>
+
+    <update id="deleteUser" parameterType="java.lang.Integer">
+        delete from  User  where id= #{id}
+    </update>
+
+    <select id="find" parameterType="user" resultType="user">
+        select * from User
+        <where>
+            <if test="id!=0">
+                and id=#{id}
+            </if>
+            <if test="username!=null">
+                and username=#{username}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="findByIds" parameterType="list" resultType="user">
+        select * from User
+        <where>
+            <foreach collection="list" open="id in(" close=")" item="id"
+                     separator=",">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+
+    <resultMap id="userMap" type="User">
+        <result column="id" property="id"></result>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="birthday" property="birthday"></result>
+        <collection property="orderList" ofType="Order">
+            <result column="oid" property="id"></result>
+            <result column="ordertime" property="ordertime"></result>
+            <result column="total" property="total"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findAllContainsOrder" resultMap="userMap">
+        select u.id id ,u.username,u.`password`,u.birthday, o.id oid,o.ordertime,o.total  from user u left join orders o on u.id=o.uid;
+    </select>
+</mapper>
