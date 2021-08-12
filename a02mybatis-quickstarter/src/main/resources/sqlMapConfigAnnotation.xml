@@ -29,11 +29,10 @@
         </environment>
     </environments>
     <mappers>
-        <!--  使用 <mapper resource /> 这种方式引入配置文件必须是在classpath路径下-->
-        <!--   <mapper resource="UserMapper.xml"/>-->
-        <!--   <mapper resource="OrderMapper.xml"/>-->
+        <!--  扫描使用注解的类-->
+        <!--  <mapper class="org.hgq.mapper.UserMapperAnnotation"/>-->
 
-        <!--    使用package这种方式引入配置文件，必须保证 UserMapper.xml 所在的目录 与 UserMapper.java 是相同名称，相同包路径-->
+        <!--   扫描使⽤注解的类所在的包-->
         <package name="org.hgq.mapper"/>
     </mappers>
 </configuration>

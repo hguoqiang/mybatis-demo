@@ -62,6 +62,30 @@
     </resultMap>
 
     <select id="findAllContainsOrder" resultMap="userMap">
-        select u.id id ,u.username,u.`password`,u.birthday, o.id oid,o.ordertime,o.total  from user u left join orders o on u.id=o.uid;
+        select u.id id ,u.username,u.`password`,u.birthday, o.id oid,o.ordertime,o.total  from user u left join orders o on u.id=o.uid
+    </select>
+
+    <resultMap id="userRoleMap" type="User">
+        <result column="id" property="id"></result>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="birthday" property="birthday"></result>
+        <collection property="roleList" ofType="Role">
+            <result column="rid" property="id"></result>
+            <result column="rolename" property="rolename"></result>
+        </collection>
+    </resultMap>
+    <select id="findAllUserAndRole" resultMap="userRoleMap">
+        SELECT
+            u.id id,
+            u.username,
+            u.`password`,
+            u.birthday,
+            r.rolename,
+            r.id rid
+        FROM
+            USER u
+        LEFT JOIN sys_user_role ur ON u.id = ur.userid
+        INNER JOIN sys_role r ON ur.roleid = r.id
     </select>
 </mapper>

@@ -20,8 +20,8 @@ public interface UserMapper {
 
     List<User> findByIds(List<Integer> list) throws Exception;
 
-    //查询所有
     List<User> findAllContainsOrder() throws Exception;
 
 
+    List<User> findAllUserAndRole();
 }

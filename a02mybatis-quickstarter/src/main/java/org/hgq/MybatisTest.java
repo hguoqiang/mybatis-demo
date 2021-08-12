@@ -139,4 +139,18 @@ public class MybatisTest {
             System.out.println(o);
         }
     }
+
+    @Test
+    public void test10() throws Exception {
+        InputStream in = Resources.getResourceAsStream("sqlMapConfig.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        List<User> all = mapper.findAllUserAndRole();
+        for (User o : all) {
+            System.out.println(o);
+        }
+    }
 }
