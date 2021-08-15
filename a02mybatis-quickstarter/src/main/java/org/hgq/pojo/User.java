@@ -1,5 +1,6 @@
 package org.hgq.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @author: huangguoqiang
  * @create: 2021-08-11 14:54
  **/
-public class User {
+public class User implements Serializable {
     private Integer id;
     private String username;
     private String password;

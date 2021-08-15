@@ -10,6 +10,8 @@ import java.util.List;
  * @author: huangguoqiang
  * @create: 2021-08-12 16:56
  **/
+//开启二级缓存
+//@CacheNamespace(implementation = RedisCache.class)
 public interface UserMapperAnnotation {
 
 
@@ -52,7 +54,7 @@ public interface UserMapperAnnotation {
 
 
     //根据id查询用户
-    //@Options(useCache = true)
+    //@Options(useCache = false)
     @Select({"select * from user where id = #{id}"})
     User findUserById(Integer id);
 

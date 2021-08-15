@@ -1,8 +1,9 @@
 package org.hgq.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable {
     private int id;
     private Date ordertime;
     private double total;

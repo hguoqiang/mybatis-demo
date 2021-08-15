@@ -4,10 +4,12 @@
 <configuration>
     <!-- 加载外部的 properties -->
     <properties resource="jdbc.properties"></properties>
-    <settings>
+<!--    <settings>-->
         <!-- 打印sql日志 -->
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
-    </settings>
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <!--   开启二级缓存-->
+<!--        <setting name="cacheEnabled" value="true"/>-->
+<!--    </settings>-->
     <!-- 起别名-->
     <typeAliases>
         <!--  <typeAlias type="org.hgq.pojo.User" alias="user"></typeAlias>-->
